@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Game {
-    private ArrayList players = new ArrayList();
+    private ArrayList<String> players = new ArrayList<String>();
     private int[] places = new int[6];
     private int[] purses  = new int[6];
     private boolean[] inPenaltyBox  = new boolean[6];
     
-    private LinkedList popQuestions = new LinkedList();
-    private LinkedList scienceQuestions = new LinkedList();
-    private LinkedList sportsQuestions = new LinkedList();
-    private LinkedList rockQuestions = new LinkedList();
+    private LinkedList<String> popQuestions = new LinkedList<String>();
+    private LinkedList<String> scienceQuestions = new LinkedList<String>();
+    private LinkedList<String> sportsQuestions = new LinkedList<String>();
+    private LinkedList<String> rockQuestions = new LinkedList<String>();
     
     private int currentPlayer = 0;
     private boolean isGettingOutOfPenaltyBox;
@@ -30,15 +30,15 @@ public class Game {
 		return "Rock Question " + index;
 	}
 
-	public boolean add(String playerName) {
+	public void add(String playerName) {
 	    players.add(playerName);
-	    places[howManyPlayers()] = 0;
-	    purses[howManyPlayers()] = 0;
-	    inPenaltyBox[howManyPlayers()] = false;
+        int numerOfPlayers = howManyPlayers();
+	    places[numerOfPlayers] = 0;
+	    purses[numerOfPlayers] = 0;
+	    inPenaltyBox[numerOfPlayers] = false;
 	    
 	    System.out.println(playerName + " was added");
-	    System.out.println("They are player number " + players.size());
-		return true;
+	    System.out.println("They are player number " + numerOfPlayers);
 	}
 	
 	private int howManyPlayers() {
