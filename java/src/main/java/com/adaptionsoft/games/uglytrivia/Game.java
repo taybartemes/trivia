@@ -117,21 +117,15 @@ public class Game {
 		if (inPenaltyBox[currentPlayer]){
 			if (isGettingOutOfPenaltyBox) {
 				getCorrectAnswer("Answer was correct!!!!");
-				
 				winner = didPlayerWin();
-				advancePlayer();
-				return winner;
-			} else {
-				advancePlayer();
-				return winner;
 			}
 		} else {
 			getCorrectAnswer("Answer was corrent!!!!");
-			
 			winner = didPlayerWin();
-			advancePlayer();
-			return winner;
 		}
+		
+        advancePlayer();
+        return winner;
 	}
 
     private void advancePlayer() {
@@ -155,7 +149,6 @@ public class Game {
 		inPenaltyBox[currentPlayer] = true;
 		
 		advancePlayer();
-		if (currentPlayer == players.size()) currentPlayer = 0;
 		return true;
 	}
 
