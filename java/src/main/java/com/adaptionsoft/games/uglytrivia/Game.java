@@ -113,34 +113,33 @@ public class Game {
 	}
 
 	public boolean wasCorrectlyAnswered() {
+	    boolean winner = true;
 		if (inPenaltyBox[currentPlayer]){
 			if (isGettingOutOfPenaltyBox) {
 				getCorrectAnswer("Answer was correct!!!!");
 				
-				boolean winner = didPlayerWin();
-				currentPlayer++;
-				if (currentPlayer == players.size()) currentPlayer = 0;
-				
+				winner = didPlayerWin();
+				advancePlayer();
 				return winner;
 			} else {
-				currentPlayer++;
-				if (currentPlayer == players.size()) currentPlayer = 0;
-				return true;
+				advancePlayer();
+				return winner;
 			}
-			
-			
-			
 		} else {
-
 			getCorrectAnswer("Answer was corrent!!!!");
 			
-			boolean winner = didPlayerWin();
-			currentPlayer++;
-			if (currentPlayer == players.size()) currentPlayer = 0;
-			
+			winner = didPlayerWin();
+			advancePlayer();
 			return winner;
 		}
 	}
+
+    private void advancePlayer() {
+        currentPlayer++;
+        if (currentPlayer == players.size()) {
+            currentPlayer = 0;
+        }
+    }
 
 	private void getCorrectAnswer(String victoryMessage) {
 		System.out.println(String.format(
@@ -155,7 +154,7 @@ public class Game {
 		System.out.println(players.get(currentPlayer)+ " was sent to the penalty box");
 		inPenaltyBox[currentPlayer] = true;
 		
-		currentPlayer++;
+		advancePlayer();
 		if (currentPlayer == players.size()) currentPlayer = 0;
 		return true;
 	}
